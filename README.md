@@ -1,5 +1,7 @@
 ﻿# Basic CRM
  
+ *Live link - https://web-production-1c9f.up.railway.app/*
+ 
 **Run command in shell/teminal**
 > python manage.py runserver
 
