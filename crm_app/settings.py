@@ -17,6 +17,14 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ------------------------------------------
+
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
+# ------------------------------------------
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -25,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!pn&l7#=(5_906n($zb%j+04lw-ab5_l+(((at*k^s*m=q^js')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -90,16 +98,11 @@ WSGI_APPLICATION = 'crm_app.wsgi.application'
 #     }
 # }
 
+# ------------------------EXTERNAL DATABASE CONNECTION--------------------------------------
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'AIy1tBJrixJ5SHzn4aDt',
-        'HOST': 'containers-us-west-84.railway.app',
-        'PORT': '7796',
-    }
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
 
